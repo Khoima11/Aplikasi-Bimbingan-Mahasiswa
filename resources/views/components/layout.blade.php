@@ -16,6 +16,8 @@
     <meta name="theme-color" content="#F2F1EE">
     <title>{{ $title ? $title.' · ' : '' }}SIBIMTA</title>
     <link rel="icon" href="{{ asset('favicon-192.png') }}" type="image/png"><link rel="apple-touch-icon" href="{{ asset('apple-touch-icon.png') }}">
+    <link rel="manifest" href="{{ asset('manifest.webmanifest') }}">
+    <meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="SIBIMTA"><meta name="apple-mobile-web-app-status-bar-style" content="default">
     <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -38,7 +40,8 @@
             <a href="{{ route('notifikasi') }}" class="nav-item {{ $aktif('notifikasi') ? 'nav-aktif' : '' }}"><x-ikon n="lonceng" />Notifikasi
                 @if ($belumDibaca)<span class="ml-auto rounded-full bg-white px-2 text-xs font-bold text-navy">{{ $belumDibaca }}</span>@endif</a>
         </nav>
-        <div class="mt-auto rounded-[20px] bg-white/[.06] p-3">
+        <x-pasang varian="gelap" class="mt-auto mb-3" />
+        <div class="rounded-[20px] bg-white/[.06] p-3">
             <a href="{{ route('akun') }}" class="flex items-center gap-3 text-white no-underline">
                 <span class="grid size-10 shrink-0 place-items-center rounded-full bg-slate text-sm font-semibold">{{ $inisial }}</span>
                 <span class="min-w-0"><span class="block truncate text-sm font-medium">{{ $u->nama }}</span><span class="block text-xs text-white/50">{{ $u->username }}</span></span>
@@ -141,6 +144,7 @@
             @endforeach
             <a href="{{ route('notifikasi') }}" class="nav-terang"><x-ikon n="lonceng" />Notifikasi @if($belumDibaca)<span class="pill pill-merah ml-auto">{{ $belumDibaca }} baru</span>@endif</a>
             <a href="{{ route('akun') }}" class="nav-terang"><x-ikon n="orang" />Akun dan kata sandi</a>
+            <x-pasang />
             <form method="post" action="{{ route('logout') }}">@csrf<button class="nav-terang w-full text-merah" type="submit"><x-ikon n="keluar" />Keluar</button></form>
         </div>
     </div>

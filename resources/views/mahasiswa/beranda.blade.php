@@ -87,6 +87,8 @@
 
     @endif
 
+    <x-pasang varian="kartu" class="mt-4 lg:hidden" />
+
     <section class="panel mt-4">
         <div class="panel-kepala"><h2>Notifikasi terbaru</h2><a href="{{ route('notifikasi') }}" class="text-sm font-semibold">Semua</a></div>
         <ul class="divide-y divide-krem-2">

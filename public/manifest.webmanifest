@@ -1,0 +1,28 @@
+{
+  "id": "/",
+  "name": "SIBIMTA – Sistem Informasi Bimbingan Skripsi",
+  "short_name": "SIBIMTA",
+  "description": "Pengajuan judul, jadwal dan catatan bimbingan, revisi, serta pemantauan progres skripsi.",
+  "lang": "id",
+  "start_url": "/?sumber=aplikasi",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#F2F1EE",
+  "theme_color": "#F2F1EE",
+  "categories": ["education", "productivity"],
+  "icons": [
+    { "src": "/ikon/ikon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/ikon/ikon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/ikon/ikon-maskable-192.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable" },
+    { "src": "/ikon/ikon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "screenshots": [
+    { "src": "/ikon/layar-hp-1.png", "sizes": "585x996", "type": "image/png", "form_factor": "narrow", "label": "Beranda mahasiswa dengan jalur skripsi" },
+    { "src": "/ikon/layar-hp-2.png", "sizes": "585x996", "type": "image/png", "form_factor": "narrow", "label": "Validasi catatan bimbingan oleh dosen" },
+    { "src": "/ikon/layar-lebar-1.png", "sizes": "1366x768", "type": "image/png", "form_factor": "wide", "label": "Dashboard pemantauan kaprodi" }
+  ],
+  "shortcuts": [
+    { "name": "Notifikasi", "url": "/notifikasi", "icons": [{ "src": "/ikon/ikon-192.png", "sizes": "192x192" }] }
+  ]
+}

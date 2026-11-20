@@ -21,4 +21,36 @@ window.judulSerupa = (url) => ({
     },
 });
 
+// ---------- Aplikasi terpasang (PWA) ----------
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => navigator.serviceWorker.register('/sw.js').catch(() => {}));
+}
+window.__promptPasang = null;
+window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    window.__promptPasang = e;
+    window.dispatchEvent(new Event('sibimta:siap-pasang'));
+});
+window.pasangAplikasi = () => ({
+    terpasang: window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true,
+    siap: !!window.__promptPasang,
+    panduan: false,
+    platform: /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1)
+        ? 'ios' : (/android/i.test(navigator.userAgent) ? 'android' : 'laptop'),
+    init() {
+        window.addEventListener('sibimta:siap-pasang', () => { this.siap = true; });
+        window.addEventListener('appinstalled', () => { this.terpasang = true; this.panduan = false; });
+    },
+    async pasang() {
+        if (window.__promptPasang) {
+            window.__promptPasang.prompt();
+            const hasil = await window.__promptPasang.userChoice;
+            if (hasil.outcome === 'accepted') this.terpasang = true;
+            window.__promptPasang = null; this.siap = false;
+        } else {
+            this.panduan = true;
+        }
+    },
+});
+
 Alpine.start();

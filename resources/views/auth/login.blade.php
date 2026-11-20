@@ -22,7 +22,7 @@
     {{-- Formulir --}}
     <section class="flex min-h-[calc(100dvh-2rem)] items-center justify-center">
         <div class="w-full max-w-[400px]">
-            <img src="{{ asset('logo-sibimta.png') }}" alt="SIBIMTA" class="mx-auto mb-8 w-48 lg:w-56">
+            <img src="{{ asset('logo-sibimta.png') }}" alt="SIBIMTA" class="mx-auto mb-6 w-36 sm:w-44 lg:w-56">
             <div class="panel p-6 sm:p-8">
                 <h1 class="!text-2xl">Masuk</h1>
                 <p class="mt-1 text-sm text-redup">Gunakan NIM (mahasiswa) atau NIP/NIDN (dosen).</p>
@@ -44,6 +44,7 @@
                     <button class="btn btn-utama w-full py-3 text-base" type="submit">Masuk</button>
                 </form>
             </div>
+            <x-pasang varian="kartu" class="mt-4" />
             <p class="mt-6 text-center text-sm text-redup">Lupa kata sandi? Hubungi admin program studi.</p>
             <p class="mt-1 text-center text-sm"><a href="{{ route('verifikasi') }}">Periksa keaslian lembar bimbingan</a></p>
         </div>

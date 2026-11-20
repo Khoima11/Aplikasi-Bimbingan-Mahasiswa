@@ -58,6 +58,18 @@ Masuk sebagai admin, lalu impor dosen dan mahasiswa dari menu **Pengguna → Imp
 Untuk menghapus data contoh yang sudah terlanjur dibuat: di Neon, hapus lalu buat ulang database, ubah `SEED_DEMO=false`,
 lalu *Manual Deploy* di Render.
 
+## Memasang di HP (tanpa Play Store / App Store)
+
+SIBIMTA adalah aplikasi web yang bisa dipasang (PWA): punya ikon di layar utama dan terbuka layar penuh.
+
+- **Android (Chrome)**: buka alamat SIBIMTA, ketuk tombol **Pasang** di halaman login atau di menu **Akun**,
+  lalu **Instal**. Bisa juga lewat menu ⋮ → *Instal aplikasi*.
+- **iPhone (Safari)**: buka alamat SIBIMTA, ketuk **Bagikan** → **Tambah ke Layar Utama** → **Tambah**.
+- **Laptop (Chrome/Edge)**: klik ikon *Instal* di ujung kanan bilah alamat.
+
+Pemasangan hanya berfungsi lewat alamat **https** (alamat Render sudah https). Data tidak disimpan di HP;
+tanpa internet aplikasi menampilkan halaman "Tidak ada koneksi".
+
 ## Menjalankan di komputer sendiri
 
 ```bash
