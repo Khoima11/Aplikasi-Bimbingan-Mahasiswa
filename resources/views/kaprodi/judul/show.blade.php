@@ -3,9 +3,9 @@
     <div class="mt-2 grid gap-4 lg:grid-cols-[1fr_2.2fr]">
         <aside class="panel hidden h-fit lg:block">
             <div class="panel-kepala"><h2>Antrean menunggu</h2></div>
-            <ul class="divide-y divide-garis">
+            <ul class="divide-y divide-krem-2">
                 @forelse ($antrian as $a)
-                    <li><a href="{{ route('kaprodi.judul.show', $a) }}" class="block px-4 py-2.5 text-sm no-underline {{ $a->id_pengajuan === $p->id_pengajuan ? 'bg-marun-50 text-marun-700' : 'text-tinta hover:bg-dasar' }}"><span class="font-semibold">{{ $a->mahasiswa->pengguna->nama }}</span><br><span class="line-clamp-2 text-redup">{{ $a->judul }}</span></a></li>
+                    <li><a href="{{ route('kaprodi.judul.show', $a) }}" class="block px-4 py-2.5 text-sm no-underline {{ $a->id_pengajuan === $p->id_pengajuan ? 'bg-krem text-navy' : 'text-tinta hover:bg-krem' }}"><span class="font-semibold">{{ $a->mahasiswa->pengguna->nama }}</span><br><span class="line-clamp-2 text-redup">{{ $a->judul }}</span></a></li>
                 @empty <li><x-kosong>Antrean kosong.</x-kosong></li> @endforelse
             </ul>
         </aside>
@@ -16,14 +16,14 @@
             <p class="mt-1 text-sm text-redup">Kata kunci: {{ $p->kata_kunci }}</p>
             <div class="mt-4 grid gap-4 md:grid-cols-2">
                 <div><h2>Latar masalah</h2><p class="mt-1 whitespace-pre-line text-sm">{{ $p->latar_masalah }}</p></div>
-                <div class="rounded-md border border-dashed border-emas bg-emas-50 p-3 text-sm">
+                <div class="rounded-xl border border-dashed border-abu bg-krem p-3 text-sm">
                     <h2>Judul serupa</h2>
                     @forelse ($serupa as $x)<p class="mt-2">{{ $x['judul'] }}<br><span class="text-redup">{{ $x['nama'] }} ({{ $x['nim'] }}), {{ $x['tahun'] }} · {{ $x['skor'] }} kata kunci sama</span></p>@empty<p class="mt-1 text-redup">Tidak ditemukan judul dengan kata kunci serupa.</p>@endforelse
                     <p class="bantuan">Berdasarkan kesamaan kata kunci, bukan pemeriksaan plagiarisme.</p>
                 </div>
             </div>
             @if ($p->asal)
-                <div class="mt-4 rounded-md bg-dasar p-3 text-sm"><p class="font-semibold">Pengajuan sebelumnya</p><p>{{ $p->asal->judul }}</p><p class="text-redup">Catatan: {{ $p->asal->catatan_kaprodi }}</p></div>
+                <div class="mt-4 rounded-2xl bg-krem p-4 text-sm"><p class="font-semibold">Pengajuan sebelumnya</p><p>{{ $p->asal->judul }}</p><p class="text-redup">Catatan: {{ $p->asal->catatan_kaprodi }}</p></div>
             @endif
 
             @if ($p->status === 'menunggu')
@@ -32,7 +32,7 @@
                     <fieldset><legend class="label">Keputusan</legend>
                         <div class="flex flex-wrap gap-4 text-sm">
                             @foreach (['disetujui' => 'Setujui', 'perlu_revisi' => 'Perlu revisi', 'ditolak' => 'Tolak'] as $v => $l)
-                                <label class="flex items-center gap-2"><input type="radio" name="keputusan" value="{{ $v }}" x-model="k" class="accent-marun-700">{{ $l }}</label>
+                                <label class="flex items-center gap-2"><input type="radio" name="keputusan" value="{{ $v }}" x-model="k" class="accent-navy">{{ $l }}</label>
                             @endforeach
                         </div>
                     </fieldset>
@@ -56,7 +56,7 @@
                     <button class="btn btn-utama" type="submit">Simpan keputusan</button>
                 </form>
             @else
-                <div class="mt-6 rounded-md bg-dasar p-3 text-sm"><p>Diputuskan {{ $p->tanggal_putusan?->translatedFormat('d M Y') }} oleh {{ $p->kaprodi?->nama }}.</p>@if($p->catatan_kaprodi)<p class="mt-1">Catatan: {{ $p->catatan_kaprodi }}</p>@endif</div>
+                <div class="mt-6 rounded-2xl bg-krem p-4 text-sm"><p>Diputuskan {{ $p->tanggal_putusan?->translatedFormat('d M Y') }} oleh {{ $p->kaprodi?->nama }}.</p>@if($p->catatan_kaprodi)<p class="mt-1">Catatan: {{ $p->catatan_kaprodi }}</p>@endif</div>
             @endif
             @if ($riwayat->count())
                 <div class="mt-4"><h2>Riwayat pengajuan mahasiswa ini</h2>

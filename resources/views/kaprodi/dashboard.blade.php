@@ -35,8 +35,8 @@
     <script type="module">
         new Chart(document.getElementById('grafikTahap'), {
             type: 'bar',
-            data: { labels: @json($sebaran->pluck('nama')), datasets: [{ data: @json($sebaran->pluck('jumlah')), backgroundColor: ['#C9CFD8','#7A1F3D','#7A1F3D','#7A1F3D','#7A1F3D','#2F7D5B'], borderRadius: 4, maxBarThickness: 44 }] },
-            options: { plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true, ticks: { precision: 0 }, grid: { color: '#EEF0F3' } }, x: { grid: { display: false }, ticks: { font: { size: 11 } } } } }
+            data: { labels: @json($sebaran->pluck('nama')), datasets: [{ data: @json($sebaran->pluck('jumlah')), backgroundColor: ['#A8AAAD','#545E76','#545E76','#263759','#263759','#1A2235'], borderRadius: 10, borderSkipped: false, maxBarThickness: 40 }] },
+            options: { plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true, ticks: { precision: 0 }, grid: { color: '#EFEDE9' }, border: { display: false } }, x: { grid: { display: false }, ticks: { font: { size: 11 } } } } }
         });
     </script>
     @endpush

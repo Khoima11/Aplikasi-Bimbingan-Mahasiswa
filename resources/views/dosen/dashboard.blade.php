@@ -9,7 +9,7 @@
     <div class="grid gap-4 lg:grid-cols-[2fr_3fr]">
         <section class="panel">
             <div class="panel-kepala"><h2>Jadwal 7 hari ke depan</h2><a href="{{ route('dosen.jadwal') }}" class="text-sm font-semibold">Kelola slot</a></div>
-            <ul class="divide-y divide-garis">
+            <ul class="divide-y divide-krem-2">
                 @forelse ($jadwal as $j)
                     <li class="px-4 py-3 text-sm"><p class="font-semibold">{{ $j->tanggal->translatedFormat('l, d M') }} · {{ substr($j->jam, 0, 5) }}</p><p>{{ $j->skripsi->mahasiswa->pengguna->nama }} <span class="text-redup">· {{ ucfirst($j->mode) }}</span></p><p class="text-redup">{{ $j->rencana_bahasan }}</p></li>
                 @empty

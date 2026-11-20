@@ -20,12 +20,12 @@
             <h2>{{ \App\Models\Persetujuan::JENIS[$jenis] }}</h2>
             <div><label class="label" for="tanggal_pelaksanaan">Tanggal pelaksanaan</label><input class="input" type="date" id="tanggal_pelaksanaan" name="tanggal_pelaksanaan" max="{{ today()->toDateString() }}" value="{{ old('tanggal_pelaksanaan', today()->toDateString()) }}" required></div>
             <fieldset><legend class="label">Hasil</legend><div class="flex flex-wrap gap-4 text-sm">
-                @foreach (\App\Models\Ujian::HASIL as $k => $l)<label class="flex items-center gap-2"><input type="radio" name="hasil" value="{{ $k }}" x-model="h" class="accent-marun-700">{{ $l }}</label>@endforeach
+                @foreach (\App\Models\Ujian::HASIL as $k => $l)<label class="flex items-center gap-2"><input type="radio" name="hasil" value="{{ $k }}" x-model="h" class="accent-navy">{{ $l }}</label>@endforeach
             </div></fieldset>
             <div><label class="label" for="catatan">Catatan</label><input class="input" id="catatan" name="catatan" maxlength="255" value="{{ old('catatan') }}"></div>
             <div x-show="h === 'lulus_dengan_revisi'" x-cloak><label class="label" for="tanggal_revisi_selesai">Tanggal revisi selesai</label><input class="input" type="date" id="tanggal_revisi_selesai" name="tanggal_revisi_selesai" value="{{ old('tanggal_revisi_selesai') }}">
                 <p class="bantuan">{{ $jenis === 'sidang' ? 'Kosongkan bila revisi belum selesai. Skripsi dinyatakan selesai setelah tanggal ini diisi.' : 'Opsional.' }}</p></div>
-            <div x-show="h === 'tidak_lulus'" x-cloak class="rounded-md border border-merah/30 bg-merah-50 p-3 text-sm text-merah">Hasil tidak lulus mengembalikan mahasiswa ke tahap sebelumnya dan membatalkan persetujuan pembimbing.</div>
+            <div x-show="h === 'tidak_lulus'" x-cloak class="rounded-xl border border-merah/30 bg-merah-50 p-3 text-sm text-merah">Hasil tidak lulus mengembalikan mahasiswa ke tahap sebelumnya dan membatalkan persetujuan pembimbing.</div>
             <div class="flex gap-2"><a href="{{ route('admin.ujian.index') }}" class="btn">Batal</a><button class="btn btn-utama" type="submit">Simpan hasil</button></div>
         </form>
     </div>

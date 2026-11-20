@@ -2,6 +2,8 @@ import Alpine from 'alpinejs';
 import Chart from 'chart.js/auto';
 
 window.Alpine = Alpine;
+Chart.defaults.font.family = 'Outfit, system-ui, sans-serif';
+Chart.defaults.color = '#6B7285';
 window.Chart = Chart;
 
 // Pencarian judul serupa saat mahasiswa mengetik (AB-03)

@@ -17,7 +17,7 @@
             </form>
             <section class="panel">
                 <div class="panel-kepala"><h2>Slot saya</h2></div>
-                <ul class="divide-y divide-garis">
+                <ul class="divide-y divide-krem-2">
                     @forelse ($slot as $sl)
                         <li class="flex items-center justify-between gap-2 px-4 py-2.5 text-sm {{ $sl->tanggal->lt(today()) ? 'opacity-60' : '' }}">
                             <span><span class="font-semibold">{{ $sl->tanggal->translatedFormat('D, d M') }}</span> {{ substr($sl->jam_mulai, 0, 5) }}–{{ substr($sl->jam_selesai, 0, 5) }}<br><span class="text-redup">{{ ucfirst($sl->mode) }} · terisi {{ $sl->terisi }}/{{ $sl->kuota }}</span></span>
@@ -36,7 +36,7 @@
             </section>
             <section class="panel">
                 <div class="panel-kepala"><h2>Jadwal disetujui</h2></div>
-                <ul class="divide-y divide-garis">
+                <ul class="divide-y divide-krem-2">
                     @forelse ($mendatang as $j)
                         <li class="px-4 py-2.5 text-sm"><span class="font-semibold">{{ $j->tanggal->translatedFormat('D, d M') }} · {{ substr($j->jam, 0, 5) }}</span> {{ $j->skripsi->mahasiswa->pengguna->nama }}<br><span class="text-redup">{{ $j->rencana_bahasan }}</span></li>
                     @empty <li><x-kosong>Belum ada jadwal mendatang.</x-kosong></li> @endforelse

@@ -6,62 +6,93 @@
 @source '../**/*.js';
 @source '../../app/**/*.php';
 
+/* Palet mengikuti referensi desain: navy, slate, abu, krem */
 @theme {
-    --font-sans: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
-    --color-dasar: #F5F6F8;
-    --color-tinta: #1C2433;
-    --color-redup: #5B6577;
-    --color-garis: #DDE1E7;
-    --color-marun-50: #FBF1F4;
-    --color-marun-100: #F4DCE4;
-    --color-marun-600: #8E2648;
-    --color-marun-700: #7A1F3D;
-    --color-marun-800: #5F1730;
-    --color-emas: #C8962E;
-    --color-emas-50: #FBF4E4;
-    --color-hijau: #2F7D5B;
-    --color-hijau-50: #E8F4EE;
-    --color-jingga: #B45309;
-    --color-jingga-50: #FDF2E2;
-    --color-merah: #B42318;
-    --color-merah-50: #FDECEA;
+    --font-sans: 'Outfit', ui-sans-serif, system-ui, sans-serif;
+    --color-navy: #1A2235;
+    --color-navy-2: #263759;
+    --color-slate: #545E76;
+    --color-abu: #A8AAAD;
+    --color-krem: #F2F1EE;
+    --color-krem-2: #E8E6E1;
+    --color-tinta: #1A2235;
+    --color-redup: #6B7285;
+    --color-garis: #E4E2DD;
+    --color-hijau: #2E7D5B;
+    --color-hijau-50: #E4F1EA;
+    --color-jingga: #A35A12;
+    --color-jingga-50: #F8EEDF;
+    --color-merah: #B03A2E;
+    --color-merah-50: #F8E5E2;
+    --color-biru-50: #E3E7F0;
+    --radius-panel: 1.5rem;
+    --radius-besar: 1.75rem;
 }
 
 @layer base {
-    body { @apply bg-dasar text-tinta antialiased; font-feature-settings: 'tnum' 1; }
-    h1 { @apply text-xl font-bold tracking-tight sm:text-2xl; }
-    h2 { @apply text-base font-semibold; }
-    a { @apply text-marun-700; }
-    :focus-visible { @apply outline-2 outline-offset-2 outline-marun-600; }
+    html { -webkit-tap-highlight-color: transparent; }
+    body { @apply bg-krem text-tinta antialiased; font-feature-settings: 'tnum' 1; }
+    h1 { @apply text-2xl font-bold tracking-tight sm:text-[28px]; }
+    h2 { @apply text-[17px] font-semibold tracking-tight; }
+    a { @apply text-navy-2 underline-offset-2; }
+    :focus-visible { @apply outline-2 outline-offset-2 outline-slate; }
     [x-cloak] { display: none !important; }
+    ::selection { @apply bg-slate text-white; }
 }
 
 @layer components {
-    .panel { @apply rounded-lg border border-garis bg-white; }
-    .panel-kepala { @apply flex items-center justify-between gap-3 border-b border-garis px-4 py-3; }
-    .panel-isi { @apply p-4; }
-    .btn { @apply inline-flex items-center justify-center gap-1.5 rounded-md border border-garis bg-white px-3 py-2 text-sm font-semibold text-tinta no-underline transition-colors hover:bg-dasar disabled:cursor-not-allowed disabled:opacity-50; }
-    .btn-utama { @apply border-marun-700 bg-marun-700 text-white hover:bg-marun-800; }
+    /* Panel */
+    .panel { @apply rounded-[var(--radius-panel)] bg-white; }
+    .panel-kepala { @apply flex items-center justify-between gap-3 px-5 pb-2 pt-5; }
+    .panel-isi { @apply p-5; }
+    .kartu-navy { @apply rounded-[var(--radius-besar)] bg-navy text-white; }
+    .kartu-slate { @apply rounded-[var(--radius-panel)] bg-slate text-white; }
+    .judul-bagian { @apply mb-3 text-xl font-bold tracking-tight; }
+
+    /* Tombol */
+    .btn { @apply inline-flex items-center justify-center gap-2 rounded-full border border-garis bg-white px-4 py-2 text-sm font-medium text-tinta no-underline transition hover:border-abu active:scale-[.98] disabled:cursor-not-allowed disabled:opacity-45; }
+    .btn-utama { @apply border-navy bg-navy text-white hover:border-navy-2 hover:bg-navy-2; }
+    .btn-slate { @apply border-slate bg-slate text-white hover:bg-navy-2; }
     .btn-hijau { @apply border-hijau bg-hijau text-white hover:brightness-95; }
-    .btn-bahaya { @apply border-merah-50 bg-merah-50 text-merah hover:bg-merah hover:text-white; }
-    .btn-kecil { @apply px-2.5 py-1 text-xs; }
-    .label { @apply mb-1 block text-sm font-semibold; }
-    .input { @apply block w-full rounded-md border border-garis bg-white px-3 py-2 text-sm text-tinta placeholder:text-redup/60 focus:border-marun-600 focus:outline-none focus:ring-2 focus:ring-marun-100; }
+    .btn-bahaya { @apply border-merah-50 bg-merah-50 text-merah hover:border-merah hover:bg-merah hover:text-white; }
+    .btn-terang { @apply border-white/20 bg-white/10 text-white hover:bg-white/20; }
+    .btn-kecil { @apply px-3 py-1 text-xs; }
+    .bulat-panah { @apply grid size-10 shrink-0 place-items-center rounded-full border-2 border-white/80 text-white no-underline transition hover:bg-white hover:text-navy; }
+
+    /* Formulir */
+    .label { @apply mb-1.5 block text-sm font-medium text-navy; }
+    .input { @apply block w-full rounded-xl border border-transparent bg-krem px-3.5 py-2.5 text-sm text-tinta placeholder:text-abu focus:border-slate focus:bg-white focus:outline-none focus:ring-4 focus:ring-slate/15; }
     .bantuan { @apply mt-1 text-xs text-redup; }
     .galat { @apply mt-1 text-xs font-medium text-merah; }
+
+    /* Tabel */
     .tbl { @apply w-full text-left text-sm; }
-    .tbl th { @apply whitespace-nowrap border-b border-garis bg-dasar px-3 py-2 text-xs font-semibold text-redup; }
-    .tbl td { @apply border-b border-garis px-3 py-2.5 align-top; }
+    .tbl th { @apply whitespace-nowrap bg-krem/70 px-4 py-2.5 text-xs font-semibold text-slate first:rounded-l-xl last:rounded-r-xl; }
+    .tbl td { @apply border-b border-krem-2 px-4 py-3 align-top; }
     .tbl tr:last-child td { @apply border-b-0; }
-    .pill { @apply inline-flex items-center whitespace-nowrap rounded-full px-2 py-0.5 text-xs font-semibold; }
-    .pill-abu { @apply bg-dasar text-redup ring-1 ring-garis; }
-    .pill-marun { @apply bg-marun-50 text-marun-700; }
+
+    /* Label status */
+    .pill { @apply inline-flex items-center whitespace-nowrap rounded-full px-2.5 py-0.5 text-xs font-medium; }
+    .pill-abu { @apply bg-krem text-slate; }
+    .pill-marun { @apply bg-biru-50 text-navy-2; }
     .pill-hijau { @apply bg-hijau-50 text-hijau; }
     .pill-jingga { @apply bg-jingga-50 text-jingga; }
     .pill-merah { @apply bg-merah-50 text-merah; }
-    .pill-emas { @apply bg-emas-50 text-[#8A6418]; }
-    .tab { @apply -mb-px inline-block border-b-2 border-transparent px-3 py-2 text-sm font-semibold text-redup no-underline hover:text-tinta; }
-    .tab-aktif { @apply border-marun-700 text-marun-700; }
-    .nav-item { @apply flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium text-redup no-underline hover:bg-dasar hover:text-tinta; }
-    .nav-aktif { @apply bg-marun-50 text-marun-700; }
+    .pill-emas { @apply bg-[#ECE6D8] text-[#6E5A2B]; }
+
+    /* Tab bergaya referensi: teks, aktif tebal dengan titik di bawah */
+    .tab { @apply relative inline-block whitespace-nowrap px-3 pb-3 pt-2 text-[15px] text-abu no-underline transition hover:text-slate; }
+    .tab-aktif { @apply font-semibold text-navy after:absolute after:bottom-0.5 after:left-1/2 after:size-1.5 after:-translate-x-1/2 after:rounded-full after:bg-navy; }
+    .baris-tab { @apply mb-4 flex gap-1 overflow-x-auto; scrollbar-width: none; }
+
+    /* Navigasi */
+    .nav-item { @apply flex items-center gap-3 rounded-full px-4 py-2.5 text-[15px] text-white/65 no-underline transition hover:bg-white/10 hover:text-white; }
+    .nav-aktif { @apply bg-krem font-semibold text-navy hover:bg-krem hover:text-navy; }
+    .nav-terang { @apply flex items-center gap-3 rounded-full px-4 py-2.5 text-[15px] text-tinta no-underline hover:bg-krem; }
+}
+
+/* Tabel dan daftar di dalam panel diberi jarak tepi */
+@layer components {
+    .panel > .overflow-x-auto, .panel > div > .overflow-x-auto { @apply px-3 pb-3; }
+    .panel > .panel-kepala + ul, .panel > .panel-kepala + .divide-y { @apply px-1 pb-2; }
 }

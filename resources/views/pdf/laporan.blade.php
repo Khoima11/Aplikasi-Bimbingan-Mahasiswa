@@ -1,13 +1,13 @@
 <!DOCTYPE html><html><head><meta charset="utf-8"><style>
 body { font-family: DejaVu Sans, sans-serif; font-size: 10px; color: #1C2433; }
-.kop { border-bottom: 2px solid #7A1F3D; padding-bottom: 6px; margin-bottom: 10px; }
+.kop { overflow: hidden; border-bottom: 2px solid #1A2235; padding-bottom: 6px; margin-bottom: 10px; }
 h1 { font-size: 14px; margin: 0 0 4px; } .redup { color: #5B6577; }
 table { width: 100%; border-collapse: collapse; margin-top: 8px; }
-th { background: #F4DCE4; border: 1px solid #999; padding: 5px; text-align: left; }
+th { background: #E8E6E1; border: 1px solid #999; padding: 5px; text-align: left; }
 td { border: 1px solid #999; padding: 5px; vertical-align: top; }
 .r td { border: none; padding: 2px 10px 2px 0; }
 </style></head><body>
-<div class="kop"><b>{{ strtoupper(\App\Models\Pengaturan::nilai('nama_institusi')) }}</b><br>Program Studi {{ \App\Models\Pengaturan::nilai('nama_prodi') }}</div>
+<div class="kop"><img src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('logo.png'))) }}" style="float:left;height:44px;margin-right:10px"><b>{{ strtoupper(\App\Models\Pengaturan::nilai('nama_institusi')) }}</b><br>Program Studi {{ \App\Models\Pengaturan::nilai('nama_prodi') }}</div>
 <h1>Laporan {{ $judul }}</h1>
 <p class="redup">Periode: {{ $periode }}{{ $angkatan ? ' · Angkatan '.$angkatan : '' }} · Dicetak {{ now()->translatedFormat('d F Y, H:i') }} oleh {{ auth()->user()->nama }}</p>
 <table class="r"><tr>@foreach ($ringkas as $l => $v)<td>{{ $l }}: <b>{{ $v }}</b></td>@endforeach</tr></table>

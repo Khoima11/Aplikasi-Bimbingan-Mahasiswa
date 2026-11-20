@@ -1,5 +1,5 @@
 <x-layout title="Verifikasi judul" judul="Verifikasi pengajuan judul">
-    <div class="mb-4 flex gap-1 overflow-x-auto border-b border-garis">
+    <div class="baris-tab">
         @foreach (['menunggu' => 'Menunggu', 'perlu_revisi' => 'Perlu revisi', 'disetujui' => 'Disetujui', 'ditolak' => 'Ditolak', 'semua' => 'Semua'] as $k => $l)
             <a href="{{ route('kaprodi.judul.index', ['status' => $k]) }}" class="tab whitespace-nowrap {{ $status === $k ? 'tab-aktif' : '' }}">{{ $l }}@if($k !== 'semua') ({{ $jumlah[$k] ?? 0 }})@endif</a>
         @endforeach

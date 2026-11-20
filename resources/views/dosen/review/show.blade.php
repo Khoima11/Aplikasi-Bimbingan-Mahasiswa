@@ -5,10 +5,10 @@
     <div class="grid gap-4 lg:grid-cols-[2fr_3fr]">
         <section class="panel h-fit">
             <div class="panel-kepala"><h2>Semua versi</h2></div>
-            <ul class="divide-y divide-garis">
+            <ul class="divide-y divide-krem-2">
                 @foreach ($versi as $v)
                     @php $rv = $v->review->firstWhere('id_dosen', $d->id_dosen); @endphp
-                    <li class="flex items-center justify-between gap-2 px-4 py-2.5 text-sm {{ $v->id_dokumen === $dok->id_dokumen ? 'bg-marun-50' : '' }}">
+                    <li class="flex items-center justify-between gap-2 px-4 py-2.5 text-sm {{ $v->id_dokumen === $dok->id_dokumen ? 'bg-krem' : '' }}">
                         <a href="{{ route('dosen.review.show', $v) }}" class="font-medium">{{ $v->label() }}</a>
                         <span class="flex items-center gap-2">@if($rv)<x-status :s="$rv->hasil" />@else<span class="pill pill-abu">Belum</span>@endif<a href="{{ route('berkas.dokumen', $v) }}" class="btn btn-kecil" aria-label="Unduh {{ $v->label() }}"><x-ikon n="unduh" c="size-3.5" /></a></span>
                     </li>
@@ -17,7 +17,7 @@
         </section>
         <section class="panel panel-isi">
             <div class="mb-3 flex flex-wrap gap-2"><a href="{{ route('berkas.dokumen', $dok) }}" class="btn"><x-ikon n="unduh" c="size-4" />Unduh berkas</a></div>
-            @if ($dok->catatan_mahasiswa)<p class="mb-3 rounded bg-dasar px-3 py-2 text-sm">Catatan mahasiswa: {{ $dok->catatan_mahasiswa }}</p>@endif
+            @if ($dok->catatan_mahasiswa)<p class="mb-3 rounded bg-krem px-3 py-2 text-sm">Catatan mahasiswa: {{ $dok->catatan_mahasiswa }}</p>@endif
             @if ($milik)
                 <p class="text-sm">Anda telah mereview versi ini: <x-status :s="$milik->hasil" /></p>
                 <p class="mt-2 whitespace-pre-line text-sm">{{ $milik->komentar }}</p>
@@ -26,7 +26,7 @@
                 <form method="post" action="{{ route('dosen.review.store', $dok) }}" enctype="multipart/form-data" class="space-y-3" x-data="{ items: [''] }">
                     @csrf
                     <fieldset><legend class="label">Hasil review</legend>
-                        <div class="flex gap-4 text-sm"><label class="flex items-center gap-2"><input type="radio" name="hasil" value="revisi" checked class="accent-marun-700">Perlu revisi</label><label class="flex items-center gap-2"><input type="radio" name="hasil" value="disetujui" class="accent-marun-700">Disetujui</label></div>
+                        <div class="flex gap-4 text-sm"><label class="flex items-center gap-2"><input type="radio" name="hasil" value="revisi" checked class="accent-navy">Perlu revisi</label><label class="flex items-center gap-2"><input type="radio" name="hasil" value="disetujui" class="accent-navy">Disetujui</label></div>
                     </fieldset>
                     <div><label class="label" for="komentar">Komentar umum</label><textarea class="input" id="komentar" name="komentar" rows="4"></textarea></div>
                     <div><label class="label" for="file_koreksi">Berkas koreksi (opsional)</label><input class="input" type="file" id="file_koreksi" name="file_koreksi" accept=".pdf,.doc,.docx"><p class="bantuan">Draf yang sudah Anda beri komentar.</p></div>
@@ -40,7 +40,7 @@
                 </form>
             @endif
             @foreach ($dok->review->where('id_dosen', '!=', $d->id_dosen) as $r)
-                <div class="mt-4 rounded-md border border-garis p-3 text-sm"><p class="font-semibold">Review {{ $r->dosen->pengguna->nama }} <x-status :s="$r->hasil" /></p><p class="mt-1 text-redup">{{ $r->komentar }}</p></div>
+                <div class="mt-4 rounded-2xl bg-krem p-4 text-sm"><p class="font-semibold">Review {{ $r->dosen->pengguna->nama }} <x-status :s="$r->hasil" /></p><p class="mt-1 text-redup">{{ $r->komentar }}</p></div>
             @endforeach
         </section>
     </div>

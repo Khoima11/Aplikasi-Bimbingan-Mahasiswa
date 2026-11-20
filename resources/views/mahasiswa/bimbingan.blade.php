@@ -2,7 +2,7 @@
     <div class="grid gap-4 lg:grid-cols-2">
         <section class="panel" x-data="{ tab: {{ $s->pembimbing->first()?->id_dosen ?? 0 }} }">
             <div class="panel-kepala"><h2>Ajukan jadwal</h2></div>
-            <div class="flex border-b border-garis px-2">
+            <div class="baris-tab mb-0 px-3 pt-2">
                 @foreach ($s->pembimbing as $p)
                     <button type="button" class="tab" :class="tab === {{ $p->id_dosen }} && 'tab-aktif'" @click="tab = {{ $p->id_dosen }}">{{ $p->label() }}</button>
                 @endforeach
@@ -11,7 +11,7 @@
                 <div x-show="tab === {{ $p->id_dosen }}" class="p-4" @if(! $loop->first) x-cloak @endif>
                     <p class="mb-3 text-sm text-redup">{{ $p->dosen->pengguna->nama }}</p>
                     @forelse ($slot[$p->id_dosen] as $sl)
-                        <form method="post" action="{{ route('mahasiswa.jadwal.store') }}" class="mb-3 rounded-md border border-garis p-3" x-data="{ buka: false }">
+                        <form method="post" action="{{ route('mahasiswa.jadwal.store') }}" class="mb-3 rounded-2xl bg-krem p-4" x-data="{ buka: false }">
                             @csrf
                             <input type="hidden" name="id_slot" value="{{ $sl->id_slot }}">
                             <div class="flex items-start justify-between gap-2">
@@ -34,7 +34,7 @@
 
         <section class="panel">
             <div class="panel-kepala"><h2>Jadwal saya</h2></div>
-            <ul class="divide-y divide-garis">
+            <ul class="divide-y divide-krem-2">
                 @forelse ($jadwal as $j)
                     <li class="px-4 py-3 text-sm">
                         <div class="flex flex-wrap items-center justify-between gap-2">
@@ -43,7 +43,7 @@
                         </div>
                         <p class="text-redup">{{ $j->dosen->pengguna->nama }} · {{ ucfirst($j->mode) }}</p>
                         @if ($j->rencana_bahasan)<p>{{ $j->rencana_bahasan }}</p>@endif
-                        @if ($j->catatan_dosen)<p class="mt-1 rounded bg-dasar px-2 py-1">Dosen: {{ $j->catatan_dosen }}</p>@endif
+                        @if ($j->catatan_dosen)<p class="mt-1 rounded bg-krem px-2 py-1">Dosen: {{ $j->catatan_dosen }}</p>@endif
                         <div class="mt-2 flex flex-wrap gap-2">
                             @if ($j->status === 'diusulkan_ulang')
                                 <form method="post" action="{{ route('mahasiswa.jadwal.terima', $j) }}">@csrf<button class="btn btn-utama btn-kecil">Terima usulan</button></form>
@@ -86,7 +86,7 @@
 
         <div class="panel">
             <div class="panel-kepala"><h2>Catatan saya</h2><a href="{{ route('lembar', $s) }}" class="text-sm font-semibold">Lembar bimbingan</a></div>
-            <ul class="divide-y divide-garis">
+            <ul class="divide-y divide-krem-2">
                 @forelse ($catatan as $c)
                     <li class="px-4 py-3 text-sm" x-data="{ edit: false }">
                         <div class="flex flex-wrap items-center justify-between gap-2">
@@ -95,7 +95,7 @@
                         </div>
                         <p class="text-redup">{{ $c->dosen->pengguna->nama }}</p>
                         <p class="mt-1 whitespace-pre-line">{{ $c->ringkasan }}</p>
-                        @if ($c->catatan_dosen)<p class="mt-2 rounded border-l-4 border-marun-700 bg-marun-50 px-3 py-2">Dosen: {{ $c->catatan_dosen }}</p>@endif
+                        @if ($c->catatan_dosen)<p class="mt-2 rounded border-l-4 border-navy bg-krem px-3 py-2">Dosen: {{ $c->catatan_dosen }}</p>@endif
                         @if ($c->status_validasi === 'dikoreksi')
                             <button type="button" class="btn btn-kecil mt-2" x-show="!edit" @click="edit = true">Perbaiki catatan</button>
                             <form x-show="edit" x-cloak method="post" action="{{ route('mahasiswa.catatan.update', $c) }}" class="mt-2 space-y-2">

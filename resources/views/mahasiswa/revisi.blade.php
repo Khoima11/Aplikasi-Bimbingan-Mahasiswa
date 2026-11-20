@@ -1,5 +1,5 @@
 <x-layout title="Revisi" judul="Daftar revisi">
-    <div class="mb-4 flex gap-1 overflow-x-auto border-b border-garis">
+    <div class="baris-tab">
         @foreach (['belum' => 'Belum', 'dikerjakan' => 'Dikerjakan', 'diterima' => 'Diterima'] as $k => $l)
             <a href="{{ route('mahasiswa.revisi', ['tab' => $k]) }}" class="tab {{ $tab === $k ? 'tab-aktif' : '' }}">{{ $l }} ({{ $jumlah[$k] ?? 0 }})</a>
         @endforeach
@@ -13,7 +13,7 @@
                 </div>
                 <p class="mt-2 whitespace-pre-line">{{ $i->uraian }}</p>
                 <p class="mt-1 text-xs text-redup">Diberikan {{ $i->tanggal_dibuat->translatedFormat('d M Y') }}@if($i->tanggal_dikerjakan), dikerjakan {{ $i->tanggal_dikerjakan->translatedFormat('d M Y') }}@endif @if($i->tanggal_diterima), diterima {{ $i->tanggal_diterima->translatedFormat('d M Y') }}@endif</p>
-                @if ($i->keterangan_mahasiswa)<p class="mt-2 rounded bg-dasar px-3 py-2">{{ $i->keterangan_mahasiswa }}</p>@endif
+                @if ($i->keterangan_mahasiswa)<p class="mt-2 rounded bg-krem px-3 py-2">{{ $i->keterangan_mahasiswa }}</p>@endif
                 @if ($i->dokumenPerbaikan)<p class="mt-1">Versi perbaikan: <a href="{{ route('berkas.dokumen', $i->dokumenPerbaikan) }}">{{ $i->dokumenPerbaikan->label() }}</a></p>@endif
                 @if ($i->status === 'belum')
                     <button type="button" class="btn btn-kecil mt-3" x-show="!buka" @click="buka = true">Tandai dikerjakan</button>

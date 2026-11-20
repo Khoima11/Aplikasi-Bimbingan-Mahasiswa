@@ -22,7 +22,7 @@
             <div class="flex flex-wrap gap-4 text-sm">
                 @foreach (\App\Models\Peran::LABEL as $k => $l)
                     @continue($k === $jenis || ($k === 'mahasiswa') || ($k === 'dosen' && $jenis !== 'dosen'))
-                    <label class="flex items-center gap-2"><input type="checkbox" name="peran[]" value="{{ $k }}" @checked(in_array($k, old('peran', $peran))) class="accent-marun-700">{{ $l }}</label>
+                    <label class="flex items-center gap-2"><input type="checkbox" name="peran[]" value="{{ $k }}" @checked(in_array($k, old('peran', $peran))) class="accent-navy">{{ $l }}</label>
                 @endforeach
             </div>
             <p class="bantuan">Contoh: dosen yang menjabat kaprodi diberi peran Kaprodi tambahan, lalu dapat berpindah peran tanpa akun baru.</p>

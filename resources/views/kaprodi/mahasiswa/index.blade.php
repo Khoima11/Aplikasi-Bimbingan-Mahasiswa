@@ -6,7 +6,7 @@
         <select class="input w-auto" id="tahap" name="tahap"><option value="">Semua tahap</option>@foreach ($tahapan->where('urutan', '>', 1) as $t)<option value="{{ $t->id_tahapan }}" @selected(request('tahap') == $t->id_tahapan)>{{ $t->nama_tahapan }}</option>@endforeach</select>
         <label class="sr-only" for="status">Status</label>
         <select class="input w-auto" id="status" name="status">@foreach (['aktif' => 'Aktif', 'selesai' => 'Selesai', 'berhenti' => 'Berhenti'] as $k => $l)<option value="{{ $k }}" @selected(request('status', 'aktif') === $k)>{{ $l }}</option>@endforeach</select>
-        <label class="flex items-center gap-2 text-sm"><input type="checkbox" name="ditinjau" value="1" @checked(request('ditinjau')) class="accent-marun-700">Hanya perlu ditinjau</label>
+        <label class="flex items-center gap-2 text-sm"><input type="checkbox" name="ditinjau" value="1" @checked(request('ditinjau')) class="accent-navy">Hanya perlu ditinjau</label>
         <button class="btn" type="submit">Tampilkan</button>
     </form>
     <div class="panel overflow-x-auto">

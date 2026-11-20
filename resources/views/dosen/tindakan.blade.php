@@ -1,7 +1,7 @@
 <x-layout title="Perlu tindakan">
     <h1 class="mb-4">Perlu tindakan Anda</h1>
     <div x-data="{ t: '{{ $catatan->count() ? 'catatan' : ($jadwal->count() ? 'jadwal' : 'draf') }}' }">
-        <div class="mb-4 flex gap-1 overflow-x-auto border-b border-garis">
+        <div class="baris-tab">
             <button type="button" class="tab" :class="t==='catatan' && 'tab-aktif'" @click="t='catatan'">Catatan ({{ $catatan->count() }})</button>
             <button type="button" class="tab" :class="t==='jadwal' && 'tab-aktif'" @click="t='jadwal'">Jadwal ({{ $jadwal->count() }})</button>
             <button type="button" class="tab" :class="t==='draf' && 'tab-aktif'" @click="t='draf'">Draf ({{ $draf->count() }})</button>
@@ -33,9 +33,9 @@
                 <div class="panel md:col-span-2"><x-kosong>Tidak ada permintaan jadwal.</x-kosong></div>
             @endforelse
         </div>
-        <div x-show="t==='draf'" x-cloak class="panel divide-y divide-garis">
+        <div x-show="t==='draf'" x-cloak class="panel divide-y divide-krem-2">
             @forelse ($draf as $d)
-                <a href="{{ route('dosen.review.show', $d) }}" class="flex items-center justify-between gap-2 px-4 py-3 text-sm text-tinta no-underline hover:bg-dasar">
+                <a href="{{ route('dosen.review.show', $d) }}" class="flex items-center justify-between gap-2 px-4 py-3 text-sm text-tinta no-underline hover:bg-krem">
                     <span><span class="font-bold">{{ $d->skripsi->mahasiswa->pengguna->nama }}</span><br><span class="text-redup">{{ $d->label() }} · {{ $d->tanggal_unggah->diffForHumans() }}</span></span>
                     <span class="btn btn-kecil">Review</span>
                 </a>

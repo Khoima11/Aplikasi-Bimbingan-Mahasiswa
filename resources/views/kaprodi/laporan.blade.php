@@ -1,5 +1,5 @@
 <x-layout title="Laporan" judul="Laporan">
-    <div class="mb-3 flex gap-1 overflow-x-auto border-b border-garis">
+    <div class="baris-tab">
         @foreach (\App\Http\Controllers\Kaprodi\LaporanController::TAB as $k => $l)
             <a href="{{ request()->fullUrlWithQuery(['tab' => $k]) }}" class="tab whitespace-nowrap {{ $tab === $k ? 'tab-aktif' : '' }}">{{ $l }}</a>
         @endforeach

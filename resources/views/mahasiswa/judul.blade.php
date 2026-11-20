@@ -7,7 +7,7 @@
               x-data="judulSerupa('{{ route('mahasiswa.judul.serupa') }}')" x-init="cari($refs.j.value, $refs.k.value)">
             @csrf
             @if ($revisi)
-                <div class="rounded-md bg-dasar p-3 text-sm"><p class="font-semibold">Pengajuan ulang dari: {{ $terakhir->judul }}</p><p class="mt-1">Catatan kaprodi: {{ $terakhir->catatan_kaprodi }}</p></div>
+                <div class="rounded-2xl bg-krem p-4 text-sm"><p class="font-semibold">Pengajuan ulang dari: {{ $terakhir->judul }}</p><p class="mt-1">Catatan kaprodi: {{ $terakhir->catatan_kaprodi }}</p></div>
             @endif
             <div>
                 <label class="label" for="judul">Judul</label>
@@ -23,7 +23,7 @@
                 <input class="input" id="kata_kunci" name="kata_kunci" x-ref="k" @input="cari($refs.j.value, $refs.k.value)" value="{{ old('kata_kunci', $revisi ? $terakhir->kata_kunci : '') }}" required maxlength="150" placeholder="misalnya: manajemen kurikulum, madrasah">
                 <p class="bantuan">Pisahkan dengan koma. Kata kunci dipakai untuk menampilkan judul serupa.</p>
             </div>
-            <div x-show="hasil.length" x-cloak class="rounded-md border border-dashed border-emas bg-emas-50 p-3 text-sm">
+            <div x-show="hasil.length" x-cloak class="rounded-xl border border-dashed border-abu bg-krem p-3 text-sm">
                 <p class="font-semibold">Judul serupa yang pernah diajukan</p>
                 <ul class="mt-1 space-y-1">
                     <template x-for="h in hasil"><li><span x-text="h.judul"></span> <span class="text-redup" x-text="'(' + (h.nama || '') + ', ' + (h.tahun || '') + ')'"></span></li></template>
@@ -38,7 +38,7 @@
 
     <section class="panel">
         <div class="panel-kepala"><h2>Riwayat pengajuan</h2></div>
-        <ul class="divide-y divide-garis">
+        <ul class="divide-y divide-krem-2">
             @forelse ($riwayat as $p)
                 <li class="px-4 py-3 text-sm">
                     <div class="flex flex-wrap items-center gap-2"><x-status :s="$p->status" /><span class="text-redup">Diajukan {{ $p->tanggal_ajuan->translatedFormat('d M Y') }}</span>@if($p->id_pengajuan_asal)<span class="pill pill-abu">Pengajuan ulang</span>@endif</div>

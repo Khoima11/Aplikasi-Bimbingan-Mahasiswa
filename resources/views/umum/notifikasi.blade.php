@@ -3,10 +3,10 @@
         <h1>Notifikasi</h1>
         <form method="post" action="{{ route('notifikasi.semua') }}">@csrf<button class="btn btn-kecil" type="submit">Tandai semua dibaca</button></form>
     </div>
-    <div class="panel divide-y divide-garis">
+    <div class="panel divide-y divide-krem-2">
         @forelse ($items as $n)
-            <a href="{{ route('notifikasi.baca', $n) }}" class="flex gap-3 px-4 py-3 text-tinta no-underline hover:bg-dasar {{ $n->sudah_dibaca ? '' : 'bg-marun-50/50' }}">
-                <span class="mt-1.5 size-2 shrink-0 rounded-full {{ $n->sudah_dibaca ? 'bg-transparent' : 'bg-marun-700' }}" aria-hidden="true"></span>
+            <a href="{{ route('notifikasi.baca', $n) }}" class="flex gap-3 px-4 py-3 text-tinta no-underline hover:bg-krem {{ $n->sudah_dibaca ? '' : 'bg-krem/60' }}">
+                <span class="mt-1.5 size-2 shrink-0 rounded-full {{ $n->sudah_dibaca ? 'bg-transparent' : 'bg-navy' }}" aria-hidden="true"></span>
                 <span class="min-w-0 flex-1">
                     <span class="block text-sm {{ $n->sudah_dibaca ? 'font-medium' : 'font-bold' }}">{{ $n->judul }}@unless($n->sudah_dibaca)<span class="sr-only"> (belum dibaca)</span>@endunless</span>
                     <span class="block text-sm text-redup">{{ $n->pesan }}</span>

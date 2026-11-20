@@ -1,17 +1,17 @@
 <!DOCTYPE html><html><head><meta charset="utf-8"><style>
 @page { margin: 28mm 20mm 22mm 20mm; }
 body { font-family: DejaVu Sans, sans-serif; font-size: 10.5px; color: #1C2433; }
-.kop { border-bottom: 2px solid #7A1F3D; padding-bottom: 8px; margin-bottom: 12px; }
+.kop { overflow: hidden; border-bottom: 2px solid #1A2235; padding-bottom: 8px; margin-bottom: 12px; }
 .kop .a { font-size: 13px; font-weight: bold; } .kop .b { font-size: 11px; }
 h2 { text-align: center; font-size: 13px; margin: 6px 0 12px; letter-spacing: .5px; }
 table { width: 100%; border-collapse: collapse; }
 .id td { padding: 2px 4px; vertical-align: top; }
-.isi th { background: #F4DCE4; border: 1px solid #999; padding: 5px; font-size: 10px; }
+.isi th { background: #E8E6E1; border: 1px solid #999; padding: 5px; font-size: 10px; }
 .isi td { border: 1px solid #999; padding: 5px; vertical-align: top; }
 .kaki { margin-top: 16px; } .kaki td { vertical-align: top; }
 .kecil { font-size: 9px; color: #5B6577; }
 </style></head><body>
-<div class="kop"><div class="a">{{ strtoupper(\App\Models\Pengaturan::nilai('nama_institusi')) }}</div><div class="b">Program Studi {{ \App\Models\Pengaturan::nilai('nama_prodi') }}</div></div>
+<div class="kop"><img src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('logo.png'))) }}" style="float:left;height:44px;margin-right:10px"><div class="a">{{ strtoupper(\App\Models\Pengaturan::nilai('nama_institusi')) }}</div><div class="b">Program Studi {{ \App\Models\Pengaturan::nilai('nama_prodi') }}</div></div>
 <h2>LEMBAR BIMBINGAN SKRIPSI</h2>
 <table class="id">
 <tr><td style="width:120px">Nama</td><td>: {{ $s->mahasiswa->pengguna->nama }}</td></tr>

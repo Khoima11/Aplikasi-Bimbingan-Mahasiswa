@@ -1,6 +1,6 @@
 <x-layout title="Ganti kata sandi" judul="Ganti kata sandi">
     @if (auth()->user()->wajib_ganti_password)
-        <div class="mb-4 rounded-md border border-emas/40 bg-emas-50 px-4 py-3 text-sm">Ini login pertama Anda. Ganti kata sandi awal sebelum melanjutkan.</div>
+        <div class="mb-4 rounded-xl border border-abu/40 bg-krem px-4 py-3 text-sm">Ini login pertama Anda. Ganti kata sandi awal sebelum melanjutkan.</div>
     @endif
     <form method="post" action="{{ route('password.update') }}" class="panel panel-isi max-w-md space-y-4">
         @csrf

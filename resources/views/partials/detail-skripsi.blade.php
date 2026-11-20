@@ -10,18 +10,20 @@
     $ujian = $s->ujian()->orderByDesc('tanggal_pelaksanaan')->get();
     $terakhir = $catatan->where('status_validasi', 'divalidasi')->first();
 @endphp
-<section class="panel mb-4 p-4 sm:p-5">
-    <div class="mb-4 flex flex-wrap items-start justify-between gap-3">
+<section class="kartu-navy mb-5 p-5 sm:p-7">
+    <div class="mb-6 flex flex-wrap items-start justify-between gap-3">
         <div class="min-w-0">
-            <p class="text-lg font-bold">{{ $s->mahasiswa->pengguna->nama }} <span class="font-normal text-redup">{{ $s->mahasiswa->nim }}</span></p>
-            <p class="text-sm">{{ $s->judul_final }}</p>
-            <p class="mt-1 text-sm text-redup">Angkatan {{ $s->mahasiswa->angkatan }} · semester {{ $s->mahasiswa->semester() }}@if($s->mahasiswa->no_hp) · <a href="https://wa.me/62{{ ltrim($s->mahasiswa->no_hp, '0') }}" target="_blank" rel="noopener">{{ $s->mahasiswa->no_hp }}</a>@endif</p>
+            <p class="text-xl font-semibold">{{ $s->mahasiswa->pengguna->nama }} <span class="text-base font-normal text-white/55">{{ $s->mahasiswa->nim }}</span></p>
+            <p class="mt-1 max-w-3xl text-white/85">{{ $s->judul_final }}</p>
+            <p class="mt-2 text-sm text-white/55">Angkatan {{ $s->mahasiswa->angkatan }} · semester {{ $s->mahasiswa->semester() }}@if($s->mahasiswa->no_hp) · <a class="text-white underline decoration-white/40" href="https://wa.me/62{{ ltrim($s->mahasiswa->no_hp, '0') }}" target="_blank" rel="noopener">WhatsApp {{ $s->mahasiswa->no_hp }}</a>@endif</p>
         </div>
-        <div class="text-right"><x-indikator :items="$ind" /></div>
+        <div class="text-right">
+            @forelse ($ind as $i)<span class="mb-1 mr-1 inline-flex rounded-full bg-merah-50 px-2.5 py-0.5 text-xs font-medium text-merah">{{ $i['label'] }}</span>@empty<span class="inline-flex rounded-full bg-white/10 px-2.5 py-0.5 text-xs text-white/80">Progres normal</span>@endforelse
+        </div>
     </div>
     <x-stepper :tahapan="$tahapan" :urutan="$s->tahapan->urutan" :selesai="$s->status_skripsi === 'selesai'" />
 </section>
-<div class="mb-4 grid grid-cols-2 gap-3 lg:grid-cols-4">
+<div class="mb-5 grid grid-cols-2 gap-3 lg:grid-cols-4">
     @foreach ($s->semuaPembimbing->where('status', 'aktif') as $p)
         <x-angka :label="'Bimbingan '.$p->label()" :nilai="$catatan->where('id_dosen', $p->id_dosen)->where('status_validasi', 'divalidasi')->count()" />
     @endforeach
@@ -29,7 +31,7 @@
     <x-angka label="Bimbingan terakhir" :nilai="$terakhir?->tanggal_bimbingan->format('d/m/y') ?? '-'" />
 </div>
 <section class="panel" x-data="{ t: 'catatan' }">
-    <div class="flex gap-1 overflow-x-auto border-b border-garis px-2">
+    <div class="baris-tab mb-0 px-3 pt-2">
         @foreach (['catatan' => 'Riwayat bimbingan', 'revisi' => 'Item revisi', 'dokumen' => 'Dokumen', 'ujian' => 'Pembimbing, persetujuan & ujian'] as $k => $l)
             <button type="button" class="tab whitespace-nowrap" :class="t === '{{ $k }}' && 'tab-aktif'" @click="t = '{{ $k }}'">{{ $l }}</button>
         @endforeach

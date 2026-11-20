@@ -19,7 +19,7 @@
             </section>
             <section class="panel">
                 <div class="panel-kepala"><h2>Akun</h2></div>
-                <dl class="divide-y divide-garis text-sm">@foreach ($akun as $k => $v)<div class="flex justify-between px-4 py-2"><dt>{{ $k }}</dt><dd class="font-semibold">{{ $v }}</dd></div>@endforeach</dl>
+                <dl class="divide-y divide-krem-2 text-sm">@foreach ($akun as $k => $v)<div class="flex justify-between px-4 py-2"><dt>{{ $k }}</dt><dd class="font-semibold">{{ $v }}</dd></div>@endforeach</dl>
             </section>
         </div>
     </div>

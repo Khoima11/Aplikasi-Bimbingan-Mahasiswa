@@ -4,14 +4,14 @@
             @csrf
             <h2>Unggah versi baru</h2>
             <div><label class="label" for="bagian">Bagian</label><select class="input" id="bagian" name="bagian">@foreach (\App\Models\Dokumen::BAGIAN as $k => $l)<option value="{{ $k }}" @selected(old('bagian') === $k)>{{ $l }}</option>@endforeach</select></div>
-            <div><label class="label" for="berkas">Berkas</label><input class="input file:mr-3 file:rounded file:border-0 file:bg-marun-50 file:px-3 file:py-1 file:text-sm file:font-semibold file:text-marun-700" type="file" id="berkas" name="berkas" accept=".pdf,.doc,.docx" required>
+            <div><label class="label" for="berkas">Berkas</label><input class="input file:mr-3 file:rounded file:border-0 file:bg-krem file:px-3 file:py-1 file:text-sm file:font-semibold file:text-navy" type="file" id="berkas" name="berkas" accept=".pdf,.doc,.docx" required>
                 <p class="bantuan">PDF atau DOCX, maksimal {{ $maks }} MB. Versi lama tetap tersimpan.</p></div>
             <div><label class="label" for="catatan_mahasiswa">Keterangan perubahan</label><input class="input" id="catatan_mahasiswa" name="catatan_mahasiswa" maxlength="255" value="{{ old('catatan_mahasiswa') }}" placeholder="Apa yang berubah dari versi sebelumnya"></div>
             <button class="btn btn-utama" type="submit"><x-ikon n="unggah" c="size-4" />Unggah</button>
         </form>
         <section class="panel">
             <div class="panel-kepala"><h2>Riwayat versi</h2></div>
-            <ul class="divide-y divide-garis">
+            <ul class="divide-y divide-krem-2">
                 @forelse ($dokumen as $d)
                     <li class="px-4 py-3 text-sm">
                         <div class="flex flex-wrap items-center justify-between gap-2">

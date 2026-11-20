@@ -1,5 +1,5 @@
 <x-layout title="Pengguna" judul="Data pengguna">
-    <div class="mb-3 flex gap-1 overflow-x-auto border-b border-garis">
+    <div class="baris-tab">
         @foreach (['mahasiswa' => 'Mahasiswa', 'dosen' => 'Dosen', 'admin' => 'Admin'] as $k => $l)
             <a href="{{ route('admin.pengguna.index', ['tab' => $k]) }}" class="tab {{ $tab === $k ? 'tab-aktif' : '' }}">{{ $l }}</a>
         @endforeach

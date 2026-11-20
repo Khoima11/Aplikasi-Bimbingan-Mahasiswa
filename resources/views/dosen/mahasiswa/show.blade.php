@@ -5,7 +5,7 @@
     <div class="mt-4 grid gap-4 lg:grid-cols-2">
         <section class="panel">
             <div class="panel-kepala"><h2>Catatan menunggu validasi</h2><span class="pill pill-jingga">{{ $menunggu->count() }}</span></div>
-            <div class="divide-y divide-garis">
+            <div class="divide-y divide-krem-2">
                 @forelse ($menunggu as $c)
                     <div class="p-4 text-sm" x-data="{ koreksi: false }">
                         <p class="font-semibold">{{ $c->tanggal_bimbingan->translatedFormat('d M Y') }} · {{ $c->bab_dibahas }} · {{ ucfirst($c->mode) }}</p>
@@ -26,7 +26,7 @@
         </section>
         <section class="panel">
             <div class="panel-kepala"><h2>Item revisi dari Anda</h2></div>
-            <div class="divide-y divide-garis">
+            <div class="divide-y divide-krem-2">
                 @forelse ($revisi as $i)
                     <div class="p-4 text-sm" x-data="{ kembali: false }">
                         <div class="flex flex-wrap items-center justify-between gap-2"><span class="font-semibold">{{ $i->bab }}</span><x-status :s="$i->status" /></div>
@@ -74,6 +74,6 @@
         </section>
     @endif
     @else
-        <p class="mt-4 rounded-md bg-dasar p-3 text-sm">Anda tidak lagi menjadi pembimbing aktif mahasiswa ini. Data ditampilkan sebagai riwayat.</p>
+        <p class="mt-4 rounded-2xl bg-krem p-4 text-sm">Anda tidak lagi menjadi pembimbing aktif mahasiswa ini. Data ditampilkan sebagai riwayat.</p>
     @endif
 </x-layout>
